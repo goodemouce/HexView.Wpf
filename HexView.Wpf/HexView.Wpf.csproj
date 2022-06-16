@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFrameworks>netcoreapp3.1;net462</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <Authors>Filip Jeremic</Authors>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -25,6 +25,10 @@ https://github.com/fjeremic/HexView.Wpf/releases</PackageReleaseNotes>
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
+	  <PackageReference Include="Microsoft.CSharp" Version="4.6" />
   </ItemGroup>
 
   <ItemGroup>

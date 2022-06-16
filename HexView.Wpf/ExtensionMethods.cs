@@ -254,7 +254,7 @@
         public static float ReadFloatLE(this BinaryReader reader)
         {
             int data = ReadInt32LE(reader);
-            return BitConverter.Int32BitsToSingle(data);
+            return Int32BitsToSingle(data);
         }
 
         /// <summary>
@@ -265,7 +265,7 @@
         public static float ReadFloatBE(this BinaryReader reader)
         {
             int data = ReadInt32BE(reader);
-            return BitConverter.Int32BitsToSingle(data);
+            return Int32BitsToSingle(data);
         }
 
         /// <summary>
@@ -276,7 +276,7 @@
         public static double ReadDoubleLE(this BinaryReader reader)
         {
             long data = ReadInt64LE(reader);
-            return BitConverter.Int64BitsToDouble(data);
+            return Int64BitsToDouble(data);
         }
 
         /// <summary>
@@ -287,7 +287,25 @@
         public static double ReadDoubleBE(this BinaryReader reader)
         {
             long data = ReadInt64BE(reader);
+            return Int64BitsToDouble(data);
+        }
+
+        private static float Int32BitsToSingle(int data)
+        {
+#if NETCOREAPP3_0_OR_GREATER
+            return BitConverter.Int32BitsToSingle(data);
+#else
+            return BitConverter.ToSingle(BitConverter.GetBytes(data), 0);
+#endif
+        }
+
+        private static double Int64BitsToDouble(long data)
+        {
+#if NETCOREAPP3_0_OR_GREATER
             return BitConverter.Int64BitsToDouble(data);
+#else
+            return BitConverter.ToDouble(BitConverter.GetBytes(data), 0);
+#endif
         }
     }
 }
