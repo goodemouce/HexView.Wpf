@@ -849,6 +849,14 @@
         }
 
         /// <inheritdoc/>
+        protected override void OnMouseDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseDown(e);
+
+            this.Focus();
+        }
+
+        /// <inheritdoc/>
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonDown(e);

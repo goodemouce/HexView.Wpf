@@ -19,7 +19,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:HexViewer">
-                    <Grid FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource TemplatedParent}}">
+                    <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
